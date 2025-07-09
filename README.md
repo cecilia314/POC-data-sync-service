@@ -51,7 +51,7 @@ Handling sensitive information like API keys for Shopify or Zoho CRM, or any oth
 
 - **Service:** **Google Secret Manager**
 - **Mechanism:**
-  - API keys (e.g., for Shopify, Zoho, or even Google Cloud service accounts if granular permissions are needed beyond the Cloud Function's default service account) would be stored in Google Secret Manager.
+  - API keys (e.g., for Shopify, Zoho, etc.) would be stored in Google Secret Manager.
   - The Cloud Function's associated Service Account would be granted the necessary IAM permissions (`Secret Manager Secret Accessor` role) to retrieve these secrets at runtime.
   - The Cloud Function code (`main.py`) would then fetch these secrets from Secret Manager using the `google-cloud-secret-manager` client library instead of hardcoding them or relying on environment variables set directly on the function. This ensures secrets are encrypted at rest and in transit, and access is tightly controlled via IAM policies.
 
@@ -69,32 +69,19 @@ To set up and run this proof-of-concept locally, follow these steps:
 2.  **Create and Activate a Python Virtual Environment:**
     It's highly recommended to use a virtual environment to manage dependencies and avoid conflicts.
 
-        ```bash
-        python3 -m venv .venv
-        ```
+       ```bash
+       python3 -m venv .venv
+       ```
+    Your terminal prompt should show`(.venv)`or`(venv)` indicating the virtual environment is active.
 
-        - **On macOS/Linux:**
-          ```bash
-          source .venv/bin/activate
-          ```
-        - **On Windows (Command Prompt):**
-          ```bash
-          .venv\Scripts\activate.bat
-          ```
-        - **On Windows (PowerShell):**
-          `powershell
-
-    .venv\Scripts\Activate.ps1
-    `      Your terminal prompt should show`(.venv)`or`(venv)` indicating the virtual environment is active.
-
-3.  **Install Dependencies:**
+4.  **Install Dependencies:**
     Install the required Python packages listed in `requirements.txt`.
 
     ```bash
     pip install -r requirements.txt
     ```
 
-4.  **Run the Local Test Script:**
+5.  **Run the Local Test Script:**
     Execute the `test_local.py` script to simulate the Cloud Function execution and see the merged output.
 
     ```bash
