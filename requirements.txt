@@ -1,0 +1,4 @@
+requests
+# Added for production. No need to install in local testing.
+google-cloud-bigquery
+google-cloud-secret-manager
